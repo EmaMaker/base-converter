@@ -168,6 +168,4 @@ def inputs():
 
     print(s + "(" + s1 + ") = " + str(convertBase(s, s1, s2)) + "(" + s2 + ")")
 
-#inputs()
-#print(decimalToBase("-2", "CP2"))
-print(baseToDecimal("110", "CP2"))
+inputs()
