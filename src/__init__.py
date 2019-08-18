@@ -149,9 +149,20 @@ def convertBase(sNum, sBase, sNewBase):
 def inputs():
     s = input("Type the number you want to convert: ")
 
-    s1 = input("Now type its base: ")
+    s1 = input("Now type its base. (Remember that a base can only use numbers from 0 up to (base - 1): ")
+
+    highestDigit = 0
+    for sD in s:
+        try:
+            c1 = int(sD)
+        except ValueError:
+            c1 = ord(sD) - 55
+
+        if c1 > highestDigit:
+            highestDigit = c1
+
     try:
-        while int(s1) > MAX_BASE or int(s1) <= MIN_BASE:
+        while int(s1) > MAX_BASE or int(s1) <= MIN_BASE or highestDigit > int(s1):
             s1 = input("Invalid base, try again: ")
     except ValueError:
         while s1.upper() != "" and s1.upper() != "BCD" and s1.upper != "CP2":

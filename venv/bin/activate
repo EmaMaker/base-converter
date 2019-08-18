@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/emamaker/PycharmProjects/BaseConverter/venv"
+VIRTUAL_ENV="/home/emamaker/github/base-converter/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
