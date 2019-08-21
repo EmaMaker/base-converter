@@ -3,12 +3,12 @@ MIN_BASE = 1
 
 
 def decimal_to_base(snum, sbase):
+    # check if number is negative
+    neg = str(snum).startswith("-");
+    if neg:
+        snum = snum[1:]
 
     if sbase == "BCD":
-        # check if number is negative
-        neg = str(snum).startswith("-");
-        if neg:
-            snum = snum[1:]
 
         lnum = list(snum)
         lnewnum = []
@@ -37,11 +37,6 @@ def decimal_to_base(snum, sbase):
 
     elif sbase == "CP2":
         # Two's Complements
-
-        # check if number is negative
-        neg = str(snum).startswith("-");
-        if neg:
-            snum = snum[1:]
 
         # first converts the number in binary
         lbin = list(decimal_to_base(snum, "2"))
@@ -74,11 +69,6 @@ def decimal_to_base(snum, sbase):
 
     else:
 
-        # numeric bases
-        neg = str(snum).startswith("-");
-        if neg:
-            snum = snum[1:]
-
         dnum = int(snum)
         result = []
         while dnum != 0:
@@ -97,13 +87,13 @@ def decimal_to_base(snum, sbase):
 
 
 def base_to_decimal(snum, sbase):
+    # check if number is negative
+    neg = str(snum).startswith("-");
+    if neg:
+        snum = snum[1:]
+
     if sbase == "BCD":
         # Binary Coded Decimal
-
-        # check if number is negative
-        neg = str(snum).startswith("-");
-        if neg:
-            snum = snum[1:]
 
         num = []
         # checks every 4 numbers, as BCD translates a decimal number into a 4bit binary one
@@ -147,12 +137,6 @@ def base_to_decimal(snum, sbase):
 
     else:
         # numeric bases
-
-        # check if number is negative
-        neg = str(snum).startswith("-");
-        if neg:
-            snum = snum[1:]
-
         # for every char in the string, make it an int. If it's a letter, translate it into ASCII int for the letter
         # and subtract 55  (A-->10 and so on)
         lnum = []
