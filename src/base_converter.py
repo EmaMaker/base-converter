@@ -75,13 +75,15 @@ def decimal_to_base(snum, sbase):
             result.append(dnum % int(sbase))
             dnum = int(dnum / int(sbase))
 
+        for i in range(0, len(result)):
+            c = result[i]
+            if c >= 10:
+                result[i] = chr(c + 55)
+
         if neg:
             result.append('-')
         result.reverse()
-
         return ''.join(str(n) for n in result)
-
-        pass
 
 ########################################################################################################################
 
@@ -170,19 +172,20 @@ def convert_base(snum, sbase, snewbase):
 
 
 def inputs():
-    s = input("Type the number you want to convert: ")
+    s = input("Type the number you want to convert: ").upper()
 
     s1 = input("Now type its base. (Remember that a base can only use numbers from 0 up to (base - 1): ")
 
     highest_digit = 0
     for sD in s:
-        try:
-            c1 = int(sD)
-        except ValueError:
-            c1 = ord(sD) - 55
+        if sD != '-':
+            try:
+                c1 = int(sD)
+            except ValueError:
+                c1 = ord(sD) - 55
 
-        if c1 > highest_digit:
-            highest_digit = c1
+            if c1 > highest_digit:
+                highest_digit = c1
 
     try:
         while int(s1) > MAX_BASE or int(s1) <= MIN_BASE or highest_digit > int(s1):
