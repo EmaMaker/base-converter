@@ -177,11 +177,13 @@ def base_to_decimal(snum, sbase):
 
 ########################################################################################################################
 
+
 def convert_base(snum, sbase, snewbase):
     s = base_to_decimal(snum, sbase)
     return decimal_to_base(s, snewbase)
 
 ########################################################################################################################
+
 
 def inputs():
     s = input("Type the number you want to convert: ")
@@ -200,24 +202,24 @@ def inputs():
 
     try:
         while int(s1) > MAX_BASE or int(s1) <= MIN_BASE or highest_digit > int(s1):
-            s1 = input("Invalid base1, try again: ")
+            s1 = input("Invalid base, try again: ")
     except ValueError:
-        while s1.upper() != '' and s1.upper() != 'BCD' and s1.upper() != 'CP2':
-            s1 = input("Invalid base2, try again: ")
+        while (s1.upper() != '' and s1.upper() != 'BCD' and s1.upper() != 'CP2') or (highest_digit > 2 and (s1.upper() == "CP2" or s1.upper() == "BCD")):
+            s1 = input("Invalid base, try again: ")
 
     s2 = input("Now type the base you wanna convert it to: ")
 
     try:
         while int(s2) > MAX_BASE or int(s2) <= MIN_BASE:
-            s2 = input("Invalid base1, try again: ")
+            s2 = input("Invalid base, try again: ")
     except ValueError:
         while s2.upper() != '' and s2.upper() != 'BCD' and s2.upper() != 'CP2':
-            s2 = input("Invalid base2, try again: ")
+            s2 = input("Invalid base, try again: ")
 
     print(s + "(" + s1 + ") = " + str(convert_base(s, s1, s2)) + "(" + s2 + ")")
 
 ########################################################################################################################
 
-# Start of main here
 
+# Start of main here
 inputs()
