@@ -118,15 +118,15 @@ def base_to_decimal(snum, sbase):
 
             # translates the 4bit binary number into it's decimal corrispondent, and then adds it to the list
             s1 = ''.join(str(e) for e in s)
-
+            n = base_to_decimal(s1, "2")
             if int(s1) > 9:
-                print("Error: detected number " + s1 + " (" + (''.join(str(e) for e in num)) + ") in BCD being > 9. "
+                print("Error: detected number " + s1 + " (" + n + ") in BCD being > 9. "
                                                                                                "This is not allowed "
                                                                                                "in BCD "
                                                        "notation, please try again fixing the number")
                 exit(-1)
 
-            num.append(base_to_decimal(s1, "2"))
+            num.append(n)
         if neg:
             num.reverse()
             num.append('-')
