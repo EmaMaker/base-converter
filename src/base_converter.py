@@ -13,7 +13,8 @@ def decimal_to_base(snum, sbase):
         lnum = list(snum)
         lnewnum = []
 
-        for i in range(0, len(lnum) ):
+        c = len(lnum)
+        for i in range(0, c):
             # converts every digit into a 4bit binary number
             bcd = decimal_to_base(snum[i], "2")
             bcd = list(bcd)
@@ -85,6 +86,7 @@ def decimal_to_base(snum, sbase):
         result.reverse()
         return ''.join(str(n) for n in result)
 
+
 ########################################################################################################################
 
 
@@ -97,19 +99,34 @@ def base_to_decimal(snum, sbase):
     if sbase == "BCD":
         # Binary Coded Decimal
 
+        lnum = list(snum)
+        lnum.reverse()
+        c = 4 - len(snum) % 4
+        for i in range(0, c):
+            lnum.append("0")
+        lnum.reverse()
+        snum = ''.join(str(n) for n in lnum)
+
         num = []
         # checks every 4 numbers, as BCD translates a decimal number into a 4bit binary one
         for i in range(0, len(snum), 4):
             s = []
-            s.append(snum[i+0])
-            s.append(snum[i+1])
-            s.append(snum[i+2])
-            s.append(snum[i+3])
+            s.append(snum[i + 0])
+            s.append(snum[i + 1])
+            s.append(snum[i + 2])
+            s.append(snum[i + 3])
 
             # translates the 4bit binary number into it's decimal corrispondent, and then adds it to the list
             s1 = ''.join(str(e) for e in s)
-            num.append(base_to_decimal(s1, "2"))
 
+            if int(s1) > 9:
+                print("Error: detected number " + s1 + " (" + (''.join(str(e) for e in num)) + ") in BCD being > 9. "
+                                                                                               "This is not allowed "
+                                                                                               "in BCD "
+                                                       "notation, please try again fixing the number")
+                exit(-1)
+
+            num.append(base_to_decimal(s1, "2"))
         if neg:
             num.reverse()
             num.append('-')
@@ -161,12 +178,14 @@ def base_to_decimal(snum, sbase):
 
         return str(result)
 
+
 ########################################################################################################################
 
 
 def convert_base(snum, sbase, snewbase):
     s = base_to_decimal(snum, sbase)
     return decimal_to_base(s, snewbase)
+
 
 ########################################################################################################################
 
@@ -191,7 +210,8 @@ def inputs():
         while int(s1) > MAX_BASE or int(s1) <= MIN_BASE or highest_digit > int(s1):
             s1 = input("Invalid base, try again: ")
     except ValueError:
-        while (s1.upper() != '' and s1.upper() != 'BCD' and s1.upper() != 'CP2') or (highest_digit > 2 and (s1.upper() == "CP2" or s1.upper() == "BCD")):
+        while (s1.upper() != '' and s1.upper() != 'BCD' and s1.upper() != 'CP2') or (
+                highest_digit > 2 and (s1.upper() == "CP2" or s1.upper() == "BCD")):
             s1 = input("Invalid base, try again: ")
 
     s2 = input("Now type the base you wanna convert it to: ")
@@ -204,6 +224,7 @@ def inputs():
             s2 = input("Invalid base, try again: ")
 
     print(s + "(" + s1 + ") = " + str(convert_base(s, s1, s2)) + "(" + s2 + ")")
+
 
 ########################################################################################################################
 
