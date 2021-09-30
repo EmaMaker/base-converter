@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return GestureDetector(
       onTap: () => hidekbd,
       child: Scaffold(
+        resizeToAvoidBottomInset: false, //new line
         appBar: AppBar(
           title: const Text("Base Converter"),
           actions: [
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                   margin: const EdgeInsets.all(24),
                   child: Center(child: resultToRichText())),
-            )
+            ),
           ]),
         ),
       ),
