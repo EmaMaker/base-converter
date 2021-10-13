@@ -94,7 +94,6 @@ String baseToDecimal(String number, String pBase) {
         n += number[i + 2];
         n += number[i + 3];
         String n1 = baseToDecimal(n, "2");
-        print(n1);
         if (int.parse(n1) > 9) return "error-bcd-greater-nine";
         res += n1;
       }

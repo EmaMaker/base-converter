@@ -143,17 +143,17 @@ class _MyHomePageState extends State<MyHomePage> {
             "Error: a digit is greater than or equal to the base");
       case "":
         return RichText(
-          text: TextSpan(
+          text: const TextSpan(
             text: '',
-            style: DefaultTextStyle.of(context).style,
-            children: const <TextSpan>[],
+            style: TextStyle(decoration: TextDecoration.none),
+            children: <TextSpan>[],
           ),
         );
       default:
         return RichText(
           text: TextSpan(
             text: '',
-            style: DefaultTextStyle.of(context).style,
+            style: const TextStyle(decoration: TextDecoration.none),
             children: <TextSpan>[
               mainNumber(_controller.text),
               baseSubtitle("($savedFromBase)"),
@@ -169,13 +169,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return RichText(
       text: TextSpan(
         text: '',
-        style: DefaultTextStyle.of(context).style,
+        style: const TextStyle(decoration: TextDecoration.none),
         children: <TextSpan>[
           TextSpan(
               text: content,
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 12,
+                  fontSize: 16,
                   fontWeight: FontWeight.normal,
                   fontFamily: "Roboto")),
         ],
